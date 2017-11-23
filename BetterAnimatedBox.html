@@ -66,20 +66,29 @@ function myMove() {
 
   }
   var pos = 0;
+  var randomOffset = 0;
+  var chance = 0;
   function frame() {
- 
+
     if (pos == 350 ) {
 
       clearInterval(id);
       document.getElementById("myButton").innerHTML = "Click to start";
       started = false;
 
-    } else {
-      pos++; 
-      elem.style.top = pos + 'px'; 
-      elem.style.left = pos + 'px'; 
-
+    } 
+    else {
+        chance += Math.floor(Math.random() * 101);
+        randomOffset = 0;
+        if (chance > 5000){
+        randomOffset = 25 + Math.floor(Math.random() * 350);
+        chance = 0;
+        }
     }
+
+    pos = (pos + 1 + Math.floor(randomOffset % 350)) % 351; 
+    elem.style.top = pos + 'px'; 
+    elem.style.left = pos + 'px'; 
   }
 }
 </script>
